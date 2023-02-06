@@ -15,8 +15,6 @@ import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import android.widget.Button;
 import android.app.AndroidAppHelper;
-import org.python.util.PythonInterpreter;
-import org.python.core.PyObject;
 
 public class ChatPieHook extends XC_MethodHook {
 
@@ -104,13 +102,6 @@ public class ChatPieHook extends XC_MethodHook {
                 String[] args = content.replace(":getConfig ","").split(" ");
                 stopMsg(MsgObj);
                 editMsg(MsgObj,cfg.getConfig(args[0]));
-            }
-            else if(content.startsWith(":execPy")){
-                PythonInterpreter p = new PythonInterpreter();
-                PyObject ret = p.eval(content.replace(":exexPy ",""));
-                String out = ret.__str__().asString();
-                stopMsg(MsgObj);
-                editMsg(MsgObj,out);
             }
             else{
                 editMsg(MsgObj,content.replace("\\:",":"));
