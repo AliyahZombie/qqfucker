@@ -25,7 +25,6 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Upload artifact
-
     - uses: actions/upload-artifact@v3
       with:
           name: ci-build
